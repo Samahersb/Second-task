@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta content='width=device-width, initial-scale=1' name='viewport' />
+  <title>directions</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<style>
+  body {
+    background-color: rgb(0, 1, 2);
+  }
+
+  h2 {
+    color: white;
+    text-align: center;
+  }
+
+  .container {
+
+    margin-top: 200px;
+    text-align: center;
+  }
+
+  .button {
+    background-color: rgb(99, 106, 126);
+    border-radius: 8px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+  }
+
+  @media screen and (min-width: 480px) {
+    p {
+      background-color: lightgreen;
+    }
+  }
+
+  @media (max-width: 900px) {
+    .content {
+      float: none;
+      width: 100%;
+    }
+
+    .slider-left {
+      float: none;
+      width: 100%;
+    }
+  }
+</style>
+</head>
+
+<body>
+  <form method="POST" action="diretions.php">
+    <h2>Control Panel</h2>
+
+    <div class="container">
+
+
+
+      <div>
+
+        <input type="button" class="button" value="forward" id="f" onclick="whatClick('forward')">
+        <br>
+        <br>
+        <input type="button" class="button" value="left" id="l" onclick="whatClick('left')">
+        <input type="button" class="button" value="stop" id="s" onclick="whatClick('stop')">
+        <input type="button" class="button" value="right" id="r" onclick="whatClick('right')">
+        <br>
+        <br>
+        <input type="button" class="button" value="backward" id="b" onclick="whatClick('backward')">
+      </div>
+
+    </div>
+  </form>
+
+
+  <script>
+    function whatClick(direction) {
+      $.ajax({
+        url: "directions.php.php",
+        data: {
+          'direction' : direction
+        },
+        type: "POST",
+        success: function (result) {
+          alert(result);
+        }
+      });
+
+    }
+  </script>
+
+</body>
+
+</html>

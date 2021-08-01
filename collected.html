@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+<style>
+.slidecontainer {
+  width: 50;
+}
+
+.slider {
+  
+  width: 1000;
+  height: 10px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  
+}
+body {
+  background-color: rgb(0, 5, 0);
+  }
+  p {
+    color: white;
+    
+  }
+  h2 {
+    color: white;
+    text-align: center;
+  }
+
+  .container {
+
+    margin-top: 200px;
+    text-align: center;
+  }
+
+  .button {
+    background-color: rgb(99, 106, 126);
+    border-radius: 8px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+  }
+
+  @media screen and (min-width: 480px) {
+   
+  }
+
+  @media (max-width: 900px) {
+    .content {
+      float: none;
+      width: 100%;
+    }
+
+    .slider-left {
+      float: none;
+      width: 100%;
+    }
+  }
+
+</style>
+</head>
+<body>
+
+<form method="POST" action="insert.php">
+<div class="slidecontainer">
+  <input type="range" min="0" max="100" value="50" class="slider" id="myRange" name="Motor1">
+  <label for="motot">Motor1:</label>
+  <p>Value: <span id="demo"></span></p>
+</div>
+
+
+<div class="slidecontainer">
+  <input type="range" min="0" max="100" value="50" class="slider" id="myRange1" name="Motor2">
+  <label for="motot">Motor2:</label>
+  <p>Value: <span id="demo1"></span></p>
+</div>
+
+
+<div class="slidecontainer">
+  <input type="range" min="0" max="100" value="50" class="slider" id="myRange2" name="Motor3">
+  <label for="motot">Motor3:</label>
+  <p>Value: <span id="demo2"></span></p>
+</div>
+
+ 
+<div class="slidecontainer">
+    <input type="range" min="0" max="100" value="50" class="slider" id="myRange3" name="Motor4">
+    <label for="motot">Motor4:</label>
+    <p>Value: <span id="demo3"></span></p>
+</div>
+ 
+
+<div class="slidecontainer">
+  <input type="range" min="0" max="100" value="50" class="slider" id="myRange4" name="Motor5">
+  <label for="motot">Motor5:</label>
+  <p>Value: <span id="demo4"></span></p>
+</div>
+
+  
+<div class="slidecontainer">
+  <input type="range" min="0" max="100" value="50" class="slider" id="myRange5" name="Motor6">
+  <label for="motot">Motor6:</label>
+  <p>Value: <span id="demo5"></span></p>
+</div>
+
+
+<button type="submit" class="btn btn-primary">save</button>
+<br>
+<button type="submit" class="btn btn-danger">run</button>
+
+<h2>Control Panel</h2>
+
+<div class="container">
+
+
+
+  <div>
+
+    <input type="button" class="button" value="forward" id="f" onclick="whatClick('forward')">
+    <br>
+    <br>
+    <input type="button" class="button" value="left" id="l" onclick="whatClick('left')">
+    <input type="button" class="button" value="stop" id="s" onclick="whatClick('stop')">
+    <input type="button" class="button" value="right" id="r" onclick="whatClick('right')">
+    <br>
+    <br>
+    <input type="button" class="button" value="backward" id="b" onclick="whatClick('backward')">
+ 
+  </div>
+
+</div>
+</form>
+
+<script>
+  let sliders = document.querySelectorAll("input.slider");
+  let outputs = document.querySelectorAll("span");
+  outputs.forEach ((item, index)=>{
+
+   item.innerHTML = sliders[index].value;
+   sliders[index].oninput  = function(){item.innerHTML = this.value};
+  }); 
+
+  function whatClick(direction) {
+      $.ajax({
+        url: "directions.php.php",
+        data: {
+          'direction' : direction
+        },
+        type: "POST",
+        success: function (result) {
+          alert(result);
+        }
+      });
+
+    }
+           
+ </script>
+
+</body>
+</html>
+
